@@ -20,5 +20,5 @@ set(SOURCE_LIST
     src/readargs.cpp)
 add_executable(${PROJECT_NAME} ${SOURCE_LIST})
 
-add_executable(test_${PROJECT_NAME} test/main.cpp)
+add_executable(test_${PROJECT_NAME} test/main.cpp src/readargs.cpp)
 target_link_libraries(test_${PROJECT_NAME} gtest gtest_main)

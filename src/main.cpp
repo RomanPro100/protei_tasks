@@ -10,14 +10,7 @@ void enter_vector(T* v) {
 }
 
 int main(int argc, char** argv) {
-    readargs::ArgMap args = readargs::parse(argc, argv);
-    for (auto& [k, m] : args) {
-        std::cout << "Флаг: " << k << ", значение: " << m << std::endl;
-    }
-    // if (args.find("-qwerty") == args.end()) {
-    //     args.insert({"-qwerty", "67"});
-    // }
-    // std::cout << readargs::as_int(args, "-p");
+    ArgStore args = ArgStore(argc, argv);
 
     std::string pseudonym;
     std::cout << "Введите псевдоним программы: ";

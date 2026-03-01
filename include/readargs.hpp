@@ -3,13 +3,28 @@
 
 #include <map>
 #include <string>
-namespace readargs {
+#include <vector>
 
 typedef std::map<const std::string, const std::string> ArgMap;
+typedef std::vector<std::string> LonelyVec;
 
-ArgMap parse(int argc, char** argv);
+class ArgStore {
+    ArgMap argMap = {};
+    LonelyVec lonelyFlags = {};
+    LonelyVec lonelyValues = {};
 
-int as_int(ArgMap am, const char* flag);
+   public:
+    ArgStore(int argc, char** argv);
 
-}  // namespace readargs
+    ArgMap getArgMap();
+    LonelyVec getLonelyFlags();
+    LonelyVec getLonelyValues();
+
+    std::string get(const char* flag);
+    std::string get_lonely_value(size_t i);
+    bool has_lonely_flag(const char* flag);
+    // int get_int(const char* flag);
+    // int get_value_int(size_t i);
+};
+
 #endif
