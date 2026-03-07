@@ -17,7 +17,9 @@ include_directories(
 include_directories("include/")
 set(SOURCE_LIST
     src/main.cpp
-    src/readargs.cpp)
+    src/readargs.cpp
+    src/app_settings.cpp
+)
 add_executable(${PROJECT_NAME} ${SOURCE_LIST})
 
 add_executable(test_${PROJECT_NAME} test/main.cpp src/readargs.cpp)

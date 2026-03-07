@@ -1,9 +1,12 @@
+#include <app_settings.hpp>
 #include <iostream>
 #include <readargs.hpp>
+#include <string>
 #include <vec.hpp>
 
 int main(int argc, char** argv) {
     ArgStore args = ArgStore(argc, argv);
+    AppSettings settings = AppSettings(args);
 
     std::string pseudonym;
     std::cout << "Введите псевдоним программы: ";
