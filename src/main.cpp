@@ -1,13 +1,6 @@
 #include <iostream>
 #include <readargs.hpp>
-const size_t VECTOR_SIZE = 4;
-
-template <typename T>
-void enter_vector(T* v) {
-    for (size_t i = 0; i < VECTOR_SIZE; i++) {
-        std::cin >> v[i];
-    }
-}
+#include <vec.hpp>
 
 int main(int argc, char** argv) {
     ArgStore args = ArgStore(argc, argv);
@@ -16,17 +9,26 @@ int main(int argc, char** argv) {
     std::cout << "Введите псевдоним программы: ";
     std::cin >> pseudonym;
 
+    std::array<SomeVectorType, VECTOR_SIZE> v;
     std::string vector_type;
-    std::cout << "Введите тип вектора (float или int): ";
-    std::cin >> vector_type;
+    while (true) {
+        std::cout << "Введите тип вектора (int, long, float или double): ";
+        std::cin >> vector_type;
+        std::cin.ignore();
 
-    std::cout << "Введите координаты вектора: ";
-    if (vector_type == "float") {
-        float v[VECTOR_SIZE];
-        enter_vector<float>(v);
-    } else if (vector_type == "int") {
-        int v[VECTOR_SIZE];
-        enter_vector<int>(v);
+        if (vector_type == "int") {
+            enter_vector<int>(v);
+        } else if (vector_type == "long") {
+            enter_vector<long>(v);
+        } else if (vector_type == "float") {
+            enter_vector<float>(v);
+        } else if (vector_type == "double") {
+            enter_vector<double>(v);
+        } else {
+            std::cerr << "Неправильный тип вектора" << std::endl;
+            continue;
+        }
+        break;
     }
 
     return 0;
