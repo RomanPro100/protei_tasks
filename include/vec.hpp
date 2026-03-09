@@ -8,6 +8,7 @@
 
 const size_t VECTOR_SIZE = 4;
 const char COORDINATE_LETTERS[VECTOR_SIZE] = {'x', 'y', 'z', 'w'};
+const std::string VECTOR_TYPES[] = {"int", "long", "float", "double"};
 
 typedef std::variant<int, long, float, double> SomeVectorType;
 typedef std::array<SomeVectorType, VECTOR_SIZE> Vector;

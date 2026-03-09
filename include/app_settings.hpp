@@ -6,11 +6,13 @@ class AppSettings {
     int ipv4_ = -1;
     int port_ = -1;
     int idx_ = -1;
+    std::string name_ = "";
     std::string libs_ = "";
 
    public:
-    std::string name_ = "";
+    const std::string& name() const { return name_; };
     AppSettings(ArgStore& args);
+    void set_name(const char* name) { name_ = name; };
     void set_name(std::string& name) { name_ = name; };
 
     int ipv4() { return ipv4_; };
