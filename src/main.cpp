@@ -34,6 +34,7 @@ int main(int argc, char** argv) {
                 std::getline(std::cin, vector_type);
                 for (const std::string& t : VECTOR_TYPES) {
                     if (t == vector_type) {
+                        std::cout << "Введён тип " << t << std::endl;
                         return;
                     }
                 }

@@ -1,5 +1,6 @@
 #ifndef _MENU_
 #define _MENU_
+#include <exception>
 #include <functional>
 #include <iostream>
 #include <string>
@@ -31,28 +32,38 @@ class Menu {
         for (size_t i = 0; i < items_.size(); i++) {
             std::cout << i + 1 << ". " << items_[i].label() << "\n";
         }
-        std::cout << std::endl;
     }
 
    public:
     void AddItem(const MenuItem& item) { items_.push_back(item); }
 
     void Run() {
-        size_t choice;
-        do {
+        std::string input = "";
+        bool should_exit = false;
+
+        MenuItem exit =
+            MenuItem("Выйти", [&should_exit]() { should_exit = true; });
+        AddItem(exit);
+
+        while (!should_exit) {
             PrintMenu();
             std::cout << "Перейти в пункт: ";
-            std::cin >> choice;
-            std::cin.ignore();
-
-            if (choice > 0 && choice <= items_.size()) {
-                items_[choice - 1].Execute();
-                std::cout << std::endl;
-            } else if (choice != 0) {
-                std::cout << "Некорректный номер. Попробуйте ещё раз."
+            std::getline(std::cin, input);
+            size_t choice = 0;
+            try {
+                choice = std::stoul(input);
+            } catch (std::exception _) {
+                std::cerr << "Номер не распознан. Попробуйте ещё раз."
+                          << std::endl;
+                continue;
+            }
+            if (choice <= 0 || choice > items_.size()) {
+                std::cerr << "Некорректный номер. Попробуйте ещё раз."
                           << std::endl;
             }
-        } while (choice != 0);
+            items_[choice - 1].Execute();
+            std::cout << std::endl;
+        };
     }
 };
 
