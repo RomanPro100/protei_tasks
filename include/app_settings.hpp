@@ -3,20 +3,20 @@
 #include <readargs.hpp>
 
 class AppSettings {
-    int ipv4 = -1;
-    int port = -1;
-    int idx = -1;
-    std::string libs = "";
+    int ipv4_ = -1;
+    int port_ = -1;
+    int idx_ = -1;
+    std::string libs_ = "";
 
    public:
-    std::string name = "";
+    std::string name_ = "";
     AppSettings(ArgStore& args);
-    void set_name(std::string name_) { name = name_; };
+    void set_name(std::string& name) { name_ = name; };
 
-    int Ipv4() { return ipv4; };
-    int Port() { return port; };
-    int Idx() { return idx; };
-    std::string Libs() { return libs; };
+    int ipv4() { return ipv4_; };
+    int port() { return port_; };
+    int idx() { return idx_; };
+    std::string libs() { return libs_; };
 };
 
 int ip_from_string(std::string s);

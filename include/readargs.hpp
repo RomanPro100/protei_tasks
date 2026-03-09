@@ -9,22 +9,21 @@ typedef std::map<const std::string, const std::string> ArgMap;
 typedef std::vector<std::string> LonelyVec;
 
 class ArgStore {
-    ArgMap argMap = {};
-    LonelyVec lonelyFlags = {};
-    LonelyVec lonelyValues = {};
+    ArgMap arg_map_ = {};
+    LonelyVec lonely_flags_ = {};
+    LonelyVec lonely_values_ = {};
 
    public:
     ArgStore(int argc, char** argv);
 
-    ArgMap getArgMap();
-    LonelyVec getLonelyFlags();
-    LonelyVec getLonelyValues();
+    const ArgMap& arg_map() const { return arg_map_; };
+    const LonelyVec& lonely_flags() const { return lonely_flags_; };
+    const LonelyVec& lonely_values() const { return lonely_values_; };
 
     std::string get(const char* flag);
+    std::string get(std::string& flag);
     std::string get_lonely_value(size_t i);
-    bool has_lonely_flag(const char* flag);
-    // int get_int(const char* flag);
-    // int get_value_int(size_t i);
+    bool has_lonely_flag(std::string& flag);
 };
 
 #endif

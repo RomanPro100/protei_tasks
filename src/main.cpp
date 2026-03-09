@@ -20,13 +20,13 @@ int main(int argc, char** argv) {
         std::cin.ignore();
 
         if (vector_type == "int") {
-            enter_vector<int>(v);
+            EnterVector<int>(v);
         } else if (vector_type == "long") {
-            enter_vector<long>(v);
+            EnterVector<long>(v);
         } else if (vector_type == "float") {
-            enter_vector<float>(v);
+            EnterVector<float>(v);
         } else if (vector_type == "double") {
-            enter_vector<double>(v);
+            EnterVector<double>(v);
         } else {
             std::cerr << "Неправильный тип вектора" << std::endl;
             continue;

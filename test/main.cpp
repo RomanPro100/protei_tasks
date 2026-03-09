@@ -8,21 +8,22 @@ TEST(TestArguments, Reading) {
                    "no", "-one",    "two", "hello",    "-aboba"};
     ArgStore args = ArgStore(11, a);
 
-    ArgMap refMap = {{"-qwerty", "123"}, {"-photo", "yeeees"}, {"-one", "two"}};
-    for (auto& [k, m] : args.getArgMap()) {
-        ASSERT_EQ(refMap[k], m);
+    ArgMap ref_map = {
+        {"-qwerty", "123"}, {"-photo", "yeeees"}, {"-one", "two"}};
+    for (auto& [k, m] : args.arg_map()) {
+        ASSERT_EQ(ref_map[k], m);
     }
 
-    LonelyVec refLonelyFlags = {"-zxcvbnm", "-aboba"};
-    ASSERT_EQ(refLonelyFlags.size(), args.getLonelyFlags().size());
-    for (size_t i = 0; i < refLonelyFlags.size(); i++) {
-        ASSERT_EQ(refLonelyFlags[i], args.getLonelyFlags()[i]);
+    LonelyVec ref_lonely_flags = {"-zxcvbnm", "-aboba"};
+    ASSERT_EQ(ref_lonely_flags.size(), args.lonely_flags().size());
+    for (size_t i = 0; i < ref_lonely_flags.size(); i++) {
+        ASSERT_EQ(ref_lonely_flags[i], args.lonely_flags()[i]);
     }
 
-    LonelyVec refLonelyValues = {"no", "hello"};
-    ASSERT_EQ(refLonelyValues.size(), args.getLonelyValues().size());
-    for (size_t i = 0; i < refLonelyValues.size(); i++) {
-        ASSERT_EQ(refLonelyValues[i], args.getLonelyValues()[i]);
+    LonelyVec ref_lonely_values = {"no", "hello"};
+    ASSERT_EQ(ref_lonely_values.size(), args.lonely_values().size());
+    for (size_t i = 0; i < ref_lonely_values.size(); i++) {
+        ASSERT_EQ(ref_lonely_values[i], args.lonely_values()[i]);
     }
 }
 
