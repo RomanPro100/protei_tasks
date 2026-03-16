@@ -20,7 +20,27 @@ set(SOURCE_LIST
     src/readargs.cpp
     src/app_settings.cpp
 )
+option(USE_ASAN "Использовать адресный санитайзер" OFF)
+if (USE_ASAN)
+    add_compile_options(-fsanitize=address)
+    add_link_options(-fsanitize=address)
+endif(USE_ASAN)
 add_executable(${PROJECT_NAME} ${SOURCE_LIST})
 
 add_executable(test_${PROJECT_NAME} test/main.cpp src/readargs.cpp)
 target_link_libraries(test_${PROJECT_NAME} gtest gtest_main)
+
+option(USE_CPPCHECK "Запустить cppcheck" OFF)
+if (USE_CPPCHECK)
+    execute_process(COMMAND cppcheck
+        --enable=all
+        --suppress=missingIncludeSystem
+        --suppress=unusedFunction
+        --std=c++${CMAKE_CXX_STANDARD}
+        --project=build/compile_commands.json
+        -i build
+        WORKING_DIRECTORY
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMAND_ERROR_IS_FATAL ANY
+    )
+endif(USE_CPPCHECK)
