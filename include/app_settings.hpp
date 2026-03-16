@@ -13,7 +13,7 @@ class AppSettings {
     const std::string& name() const { return name_; };
     AppSettings(ArgStore& args);
     void set_name(const char* name) { name_ = name; };
-    void set_name(std::string& name) { name_ = name; };
+    void set_name(const std::string& name) { name_ = name; };
 
     int ipv4() { return ipv4_; };
     int port() { return port_; };
@@ -21,6 +21,6 @@ class AppSettings {
     std::string libs() { return libs_; };
 };
 
-int ip_from_string(std::string s);
+int ip_from_string(const std::string& s);
 
 #endif

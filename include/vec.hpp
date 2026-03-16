@@ -42,8 +42,8 @@ bool EnterVector(Vector& v) {
     }
 
     std::cout << "Ваш вектор: [";
-    for (size_t i = 0; i < VECTOR_SIZE; i++) {
-        std::cout << std::get<T>(v[i]) << ", ";
+    for (size_t j = 0; j < VECTOR_SIZE; j++) {
+        std::cout << std::get<T>(v[j]) << ", ";
     }
     std::cout << "\b\b]" << std::endl;
     return true;

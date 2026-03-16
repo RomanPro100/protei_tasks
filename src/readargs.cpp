@@ -27,7 +27,9 @@ ArgStore::ArgStore(int argc, char** argv) {
 }
 
 std::string ArgStore::get(const char* flag) { return arg_map_.at(flag); };
-std::string ArgStore::get(std::string& flag) { return arg_map_.at(flag); };
+std::string ArgStore::get(const std::string& flag) {
+    return arg_map_.at(flag);
+};
 std::string ArgStore::get_lonely_value(size_t i) {
     return lonely_values_.at(i);
 };

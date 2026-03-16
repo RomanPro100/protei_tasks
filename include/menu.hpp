@@ -52,14 +52,15 @@ class Menu {
             size_t choice = 0;
             try {
                 choice = std::stoul(input);
-            } catch (std::exception _) {
+            } catch (const std::exception& _) {
                 std::cerr << "Номер не распознан. Попробуйте ещё раз."
                           << std::endl;
                 continue;
             }
-            if (choice <= 0 || choice > items_.size()) {
+            if (choice > items_.size()) {
                 std::cerr << "Некорректный номер. Попробуйте ещё раз."
                           << std::endl;
+                continue;
             }
             items_[choice - 1].Execute();
             std::cout << std::endl;

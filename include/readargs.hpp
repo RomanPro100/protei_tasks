@@ -21,7 +21,7 @@ class ArgStore {
     const LonelyVec& lonely_values() const { return lonely_values_; };
 
     std::string get(const char* flag);
-    std::string get(std::string& flag);
+    std::string get(const std::string& flag);
     std::string get_lonely_value(size_t i);
     bool has_lonely_flag(std::string& flag);
 };

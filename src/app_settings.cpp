@@ -10,14 +10,14 @@ AppSettings::AppSettings(ArgStore& args) {
         name_ = args.get("-r");
         idx_ = std::stoi(args.get("-i"));
         libs_ = args.get("-L");
-    } catch (std::out_of_range& _) {
+    } catch (const std::out_of_range& _) {
         std::cerr << "Отсутствуют некоторые аргументы, использованы "
                      "значения по умолчанию"
                   << std::endl;
     }
 }
 
-int ip_from_string(std::string s) {
+int ip_from_string(const std::string& s) {
     int res = 0;
     int part = 0;
     int part_idx = 0;
@@ -44,7 +44,7 @@ int ip_from_string(std::string s) {
             part_idx++;
             part = 0;
             found_part = false;
-        } else if (i >= '0' || i <= '9') {
+        } else if (i >= '0' && i <= '9') {
             found_part = true;
             part = part * 10 + (i - '0');
         } else {
